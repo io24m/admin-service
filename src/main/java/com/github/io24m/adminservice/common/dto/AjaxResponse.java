@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 public class AjaxResponse<T> {
     private int code = 1;
     private T result;
-    private int count;
     private boolean success = true;
     private String message;
 

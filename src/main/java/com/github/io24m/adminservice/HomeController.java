@@ -1,5 +1,6 @@
 package com.github.io24m.adminservice;
 
+import com.github.io24m.adminservice.common.dto.AjaxPageResponse;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +37,14 @@ public class HomeController {
     }
 
     @PostMapping("/list")
-    public AjaxResponse list() {
+    public AjaxPageResponse list() {
         List<String> res = new ArrayList<>();
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
             res.add(i + "");
-        return AjaxResponse.result(res);
+        AjaxPageResponse<String> result = AjaxPageResponse.result(res);
+        result.setCount(res.size());
+//        result.setMessage("cuowu");
+//        result.setSuccess(false);
+        return result;
     }
 }
