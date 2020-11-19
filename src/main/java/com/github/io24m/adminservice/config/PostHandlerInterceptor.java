@@ -1,15 +1,23 @@
 package com.github.io24m.adminservice.config;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
-import org.apache.commons.lang3.StringUtils;
+import com.github.io24m.adminservice.common.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * @author lk1
@@ -29,17 +37,44 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Content-Type", "application/json;charset=utf-8");
-        String header = request.getHeader("Admin-Token");
-        System.out.println(request.getSession().getId());
-//        || request.getSession().getAttribute(header) == null
-        if (StringUtils.isBlank(header) ) {
-            AjaxResponse err = AjaxResponse.error("无权限");
-            err.setCode(0);
-            String res = objectMapper.writeValueAsString(err);
-            response.getWriter().write(res);
+        if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        Method method = handlerMethod.getMethod();
+        if (method.isAnnotationPresent(SkipToken.class)) {
+            return true;
+//            SkipToken skipToken = method.getAnnotation(SkipToken.class);
+        }
+        String token = request.getHeader("Admin-Token");
+        try {
+            String userId = JWT.decode(token).getAudience().get(0);
+        } catch (JWTDecodeException e) {
+            err(response);
+            return false;
+        }
+
+        //根据userId查询数据库
+        User user = new User();
+        user.setUserId("0");
+        user.setAccount("0");
+        user.setPassword("1");
+        user.setUserName("test");
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
+        try {
+            jwtVerifier.verify(token);
+        } catch (JWTVerificationException e) {
+            err(response);
             return false;
         }
         return true;
+    }
+
+    private void err(HttpServletResponse response) throws IOException {
+        AjaxResponse err = AjaxResponse.error("无权限");
+        err.setCode(0);
+        String res = objectMapper.writeValueAsString(err);
+        response.getWriter().write(res);
     }
 
 }

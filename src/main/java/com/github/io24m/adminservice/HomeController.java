@@ -1,7 +1,10 @@
 package com.github.io24m.adminservice;
 
+import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxPageResponse;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
+import com.github.io24m.adminservice.common.dto.User;
+import com.github.io24m.adminservice.common.utils.TokenUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +27,15 @@ public class HomeController {
     }
 
     @PostMapping("/login")
+    @SkipToken
     public AjaxResponse login(String account, String password, HttpServletRequest request) {
-        request.getSession().setAttribute(account, password);
-        return AjaxResponse.result(account);
+        User user = new User();
+        user.setUserId("0");
+        user.setAccount("0");
+        user.setPassword("1");
+        user.setUserName("test");
+        String token = TokenUtil.getToken(user);
+        return AjaxResponse.result(token);
     }
 
     @PostMapping("/auth")
