@@ -26,7 +26,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     protected void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
-        post.excludePathPatterns("/login");
         post.addPathPatterns("/**");
     }
 
