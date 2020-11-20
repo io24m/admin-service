@@ -1,15 +1,14 @@
 package com.github.io24m.adminservice.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author lk1
  * @description
  * @create 2020-11-18 9:48
  */
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AjaxResponse<T> {

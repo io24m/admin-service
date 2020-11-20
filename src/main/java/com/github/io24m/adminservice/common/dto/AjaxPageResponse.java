@@ -1,8 +1,6 @@
 package com.github.io24m.adminservice.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +10,8 @@ import java.util.List;
  * @description
  * @create 2020-11-19 13:59
  */
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AjaxPageResponse<T> extends AjaxResponse<Collection<T>> {
