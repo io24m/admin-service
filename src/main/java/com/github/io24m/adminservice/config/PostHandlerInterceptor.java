@@ -31,12 +31,6 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        response.setHeader("Access-Control-Allow-Methods", "*");
-        response.setHeader("Access-Control-Max-Age", "36000");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Headers", "*");
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Content-Type", "application/json;charset=utf-8");
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
@@ -49,7 +43,7 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Admin-Token");
         try {
             String userId = JWT.decode(token).getAudience().get(0);
-        } catch (JWTDecodeException e) {
+        } catch (Exception e) {
             err(response);
             return false;
         }
@@ -63,7 +57,7 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
-        } catch (JWTVerificationException e) {
+        } catch (Exception e) {
             err(response);
             return false;
         }
@@ -75,6 +69,7 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         err.setCode(0);
         String res = objectMapper.writeValueAsString(err);
         response.getWriter().write(res);
+        response.setStatus(401);
     }
 
 }

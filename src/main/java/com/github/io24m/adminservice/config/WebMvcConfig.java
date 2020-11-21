@@ -29,13 +29,13 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         post.addPathPatterns("/**");
     }
 
-    @Override
-    protected void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
-        registry.addMapping("/**")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .allowedOrigins("*")
-                .allowCredentials(true);
-    }
+//    @Override
+//    protected void addCorsMappings(CorsRegistry registry) {
+//        super.addCorsMappings(registry);
+//        registry.addMapping("/**")
+//                .allowedMethods("*")
+//                .allowedHeaders("*")
+//                .allowedOrigins("*")
+//                .allowCredentials(true);
+//    }
 }

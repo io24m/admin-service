@@ -44,6 +44,10 @@ public class HomeController {
         res.add(auth);
         return AjaxResponse.result(res);
     }
+    @PostMapping("/err")
+    public AjaxResponse err(String auth) {
+        return AjaxResponse.error("cuowu");
+    }
 
     @PostMapping("/list")
     public AjaxPageResponse list() {
