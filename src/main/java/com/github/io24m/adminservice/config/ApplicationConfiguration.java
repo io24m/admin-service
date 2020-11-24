@@ -14,7 +14,6 @@ import org.springframework.web.filter.CorsFilter;
  */
 
 @Configuration
-@MapperScan("com.github.io24m.adminservice.mapper")
 public class ApplicationConfiguration {
     @Bean
     public CorsFilter corsFilter() {
