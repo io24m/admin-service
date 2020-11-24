@@ -5,6 +5,10 @@ import com.github.io24m.adminservice.common.dto.AjaxPageResponse;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.dto.User;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
+import com.github.io24m.adminservice.domain.SysTest;
+import com.github.io24m.adminservice.mapper.SysTestMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +25,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 public class HomeController {
-    @RequestMapping("/")
+    @Autowired
+    private SysTestMapper sysTestMapper;
+
+    @PostMapping("/")
     public AjaxResponse index() {
         return AjaxResponse.success();
+    }
+
+    @GetMapping("/")
+    @SkipToken
+    public AjaxResponse indexGet() {
+        List<SysTest> sysTests = sysTestMapper.selectAll();
+        return AjaxResponse.result(sysTests);
     }
 
     @PostMapping("/login")
@@ -44,6 +58,7 @@ public class HomeController {
         res.add(auth);
         return AjaxResponse.result(res);
     }
+
     @PostMapping("/err")
     public AjaxResponse err(String auth) {
         return AjaxResponse.error("cuowu");
