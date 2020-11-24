@@ -2,6 +2,7 @@ package com.github.io24m.adminservice.mapper;
 
 import com.github.io24m.adminservice.domain.SysTest;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,6 +10,6 @@ import java.util.List;
  * @description
  * @create 2020-11-24 10:47
  */
-public interface SysTestMapper {
+public interface SysTestMapper extends Serializable {
     List<SysTest> selectAll();
 }

@@ -1,9 +1,8 @@
 package com.github.io24m.adminservice.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -15,11 +14,10 @@ import org.springframework.web.filter.CorsFilter;
  */
 
 @Configuration
-public class CorsConfig {
+@MapperScan("com.github.io24m.adminservice.mapper")
+public class ApplicationConfiguration {
     @Bean
     public CorsFilter corsFilter() {
-//        FilterRegistrationBean
-//        Ordered
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("*");
         config.setAllowCredentials(true);

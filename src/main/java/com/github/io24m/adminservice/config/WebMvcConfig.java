@@ -3,7 +3,10 @@ package com.github.io24m.adminservice.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
  * @author lk1
@@ -12,8 +15,12 @@ import org.springframework.web.servlet.config.annotation.*;
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+    private final PostHandlerInterceptor postHandlerInterceptor;
+
     @Autowired
-    private PostHandlerInterceptor postHandlerInterceptor;
+    public WebMvcConfig(PostHandlerInterceptor postHandlerInterceptor) {
+        this.postHandlerInterceptor = postHandlerInterceptor;
+    }
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -28,14 +35,4 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
         post.addPathPatterns("/**");
     }
-
-//    @Override
-//    protected void addCorsMappings(CorsRegistry registry) {
-//        super.addCorsMappings(registry);
-//        registry.addMapping("/**")
-//                .allowedMethods("*")
-//                .allowedHeaders("*")
-//                .allowedOrigins("*")
-//                .allowCredentials(true);
-//    }
 }
