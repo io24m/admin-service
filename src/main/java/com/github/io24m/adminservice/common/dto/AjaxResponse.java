@@ -1,6 +1,13 @@
 package com.github.io24m.adminservice.common.dto;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.github.pagehelper.PageInfo;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @author lk1
@@ -12,7 +19,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AjaxResponse<T> {
-    private int code = 1;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    private Long count;
     private T result;
     private boolean success = true;
     private String message;
@@ -39,6 +47,14 @@ public class AjaxResponse<T> {
         AjaxResponse<T> res = new AjaxResponse<>();
         res.setResult(result);
         res.setSuccess(true);
+        return res;
+    }
+
+    public static <T> AjaxResponse<List<T>> pageResult(List<T> result) {
+        AjaxResponse<List<T>> res = new AjaxResponse<>();
+        res.setResult(result);
+        res.setSuccess(true);
+        res.setCount(new PageInfo<>(result).getTotal());
         return res;
     }
 }

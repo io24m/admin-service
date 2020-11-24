@@ -11,5 +11,5 @@ import lombok.Data;
 public class SysTest {
     private Integer id;
     private String name;
-    private String remark;
+//    private String remark;
 }

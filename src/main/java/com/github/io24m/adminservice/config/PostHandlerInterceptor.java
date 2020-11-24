@@ -3,11 +3,8 @@ package com.github.io24m.adminservice.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
-import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +41,7 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         try {
             String userId = JWT.decode(token).getAudience().get(0);
         } catch (Exception e) {
-            err(response);
+            response.setStatus(401);
             return false;
         }
 
@@ -58,18 +55,10 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         try {
             jwtVerifier.verify(token);
         } catch (Exception e) {
-            err(response);
+            response.setStatus(401);
             return false;
         }
         return true;
-    }
-
-    private void err(HttpServletResponse response) throws IOException {
-        AjaxResponse err = AjaxResponse.error("无权限");
-        err.setCode(0);
-        String res = objectMapper.writeValueAsString(err);
-        response.getWriter().write(res);
-        response.setStatus(401);
     }
 
 }

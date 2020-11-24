@@ -1,14 +1,13 @@
 package com.github.io24m.adminservice;
 
 import com.github.io24m.adminservice.common.annotation.SkipToken;
-import com.github.io24m.adminservice.common.dto.AjaxPageResponse;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.dto.User;
+import com.github.io24m.adminservice.common.utils.PageUtil;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
 import com.github.io24m.adminservice.domain.SysTest;
 import com.github.io24m.adminservice.mapper.SysTestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,16 +27,12 @@ public class HomeController {
     @Autowired
     private SysTestMapper sysTestMapper;
 
-    @PostMapping("/")
-    public AjaxResponse index() {
-        return AjaxResponse.success();
-    }
-
-    @GetMapping("/")
+    @RequestMapping("/")
     @SkipToken
-    public AjaxResponse indexGet() {
+    public AjaxResponse index() {
+        PageUtil.startPage();
         List<SysTest> sysTests = sysTestMapper.selectAll();
-        return AjaxResponse.result(sysTests);
+        return AjaxResponse.pageResult(sysTests);
     }
 
     @PostMapping("/login")
@@ -65,14 +60,11 @@ public class HomeController {
     }
 
     @PostMapping("/list")
-    public AjaxPageResponse list() {
+    @SkipToken
+    public AjaxResponse list() {
         List<String> res = new ArrayList<>();
         for (int i = 0; i < 10; i++)
             res.add(i + "");
-        AjaxPageResponse<String> result = AjaxPageResponse.result(res);
-        result.setCount(res.size());
-//        result.setMessage("cuowu");
-//        result.setSuccess(false);
-        return result;
+        return AjaxResponse.result(res);
     }
 }
