@@ -8,7 +8,7 @@ import lombok.Data;
  * @create 2020-11-24 16:08
  */
 @Data
-public class HomeResult {
+public class Home {
     private Integer id;
     private String name;
 }

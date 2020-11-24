@@ -1,6 +1,6 @@
 package com.github.io24m.adminservice.service.home;
 
-import com.github.io24m.adminservice.domain.home.HomeResult;
+import com.github.io24m.adminservice.domain.home.Home;
 import com.github.io24m.adminservice.mapper.home.HomeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ public class HomeServiceImpl {
     @Autowired
     private HomeMapper homeMapper;
 
-    public List<HomeResult> get() {
-        List<HomeResult> homeResults = homeMapper.selectAll();
+    public List<Home> get() {
+        List<Home> homeResults = homeMapper.selectAll();
         return homeResults;
     }
 
-    public List<HomeResult> selectAll() {
+    public List<Home> selectAll() {
         return get();
     }
 }
