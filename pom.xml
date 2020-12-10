@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+
     </properties>
 
     <dependencies>
@@ -30,7 +31,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.4</version>
         </dependency>
-
+        <!--MBG-->
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis.generator</groupId>-->
+            <!--<artifactId>mybatis-generator-core</artifactId>-->
+            <!--<version>1.3.7</version>-->
+        <!--</dependency>-->
         <!--mybatis 分页插件 pagehelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -39,9 +45,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>com.baomidou</groupId>-->
-            <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
-            <!--<version>3.4.1</version>-->
+        <!--<groupId>com.baomidou</groupId>-->
+        <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--<version>3.4.1</version>-->
         <!--</dependency>-->
 
         <!--mysql-->
@@ -91,6 +97,20 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <jdbcDriver>com.mysql.cj.jdbc.Driver</jdbcDriver>
+                    <jdbcURL>jdbc:mysql://localhost/admin_service?serverTimezone=Asia/Shanghai</jdbcURL>
+                    <jdbcUserId>root</jdbcUserId>
+                    <jdbcPassword>123456</jdbcPassword>
+                    <configurationFile>${basedir}/src/main/resources/generatorConfig-dev.xml</configurationFile>
+                    <!--<verbose>true</verbose>-->
+                    <!--<overwrite>true</overwrite>-->
+                </configuration>
             </plugin>
         </plugins>
     </build>
