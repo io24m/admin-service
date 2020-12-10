@@ -28,7 +28,7 @@ spring:
       testOnBorrow: false
       testOnReturn: false
 mybatis:
-  mapper-locations: classpath:mapper/**/*Mapper.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
   configLocation: classpath:mybatis/mybatis-config.xml
 #  type-aliases-package: com.github.io24m.adminservice.domain
 
