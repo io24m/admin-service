@@ -1,24 +1,23 @@
 /*
-Navicat MySQL Data Transfer
+SQLyog Ultimate v12.09 (64 bit)
+MySQL - 8.0.12 : Database - admin_service
+*********************************************************************
+*/
 
-Source Server         : 本地
-Source Server Version : 80012
-Source Host           : localhost:3306
-Source Database       : admin_service
+/*!40101 SET NAMES utf8 */;
 
-Target Server Type    : MYSQL
-Target Server Version : 80012
-File Encoding         : 65001
+/*!40101 SET SQL_MODE=''*/;
 
-Date: 2020-11-24 14:04:47
-*/
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+USE `admin_service`;
 
-SET FOREIGN_KEY_CHECKS=0;
+/*Table structure for table `sys_test` */
 
--- ----------------------------
--- Table structure for sys_test
--- ----------------------------
 DROP TABLE IF EXISTS `sys_test`;
+
 CREATE TABLE `sys_test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -26,27 +25,30 @@ CREATE TABLE `sys_test` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- ----------------------------
--- Records of sys_test
--- ----------------------------
-INSERT INTO `sys_test` VALUES ('1', 'a', 'e');
-INSERT INTO `sys_test` VALUES ('2', 'b', 'c');
-INSERT INTO `sys_test` VALUES ('3', 'qq', 'ww');
-INSERT INTO `sys_test` VALUES ('4', 'qwqw', 'wqwqw');
-INSERT INTO `sys_test` VALUES ('5', 'ewqe', 'ewq');
-INSERT INTO `sys_test` VALUES ('6', 'ewq', null);
-INSERT INTO `sys_test` VALUES ('7', 'wq', null);
-INSERT INTO `sys_test` VALUES ('8', 'ewq', null);
-INSERT INTO `sys_test` VALUES ('9', 'wqewq', null);
-INSERT INTO `sys_test` VALUES ('10', 'ewqewq', null);
-INSERT INTO `sys_test` VALUES ('11', 'ewqeqw', null);
-INSERT INTO `sys_test` VALUES ('12', '1', null);
-INSERT INTO `sys_test` VALUES ('13', '2', null);
-INSERT INTO `sys_test` VALUES ('14', '3', null);
-INSERT INTO `sys_test` VALUES ('15', '4', null);
-INSERT INTO `sys_test` VALUES ('16', '5', null);
-INSERT INTO `sys_test` VALUES ('17', '6', null);
-INSERT INTO `sys_test` VALUES ('18', '7', null);
-INSERT INTO `sys_test` VALUES ('19', '8', null);
-INSERT INTO `sys_test` VALUES ('20', '9', null);
-INSERT INTO `sys_test` VALUES ('21', '10', null);
+/*Data for the table `sys_test` */
+
+insert  into `sys_test`(`id`,`name`,`remark`) values (1,'a','e'),(2,'b','c'),(3,'qq','ww'),(4,'qwqw','wqwqw'),(5,'ewqe','ewq'),(6,'ewq',NULL),(7,'wq',NULL),(8,'ewq',NULL),(9,'wqewq',NULL),(10,'ewqewq',NULL),(11,'ewqeqw',NULL),(12,'1',NULL),(13,'2',NULL),(14,'3',NULL),(15,'4',NULL),(16,'5',NULL),(17,'6',NULL),(18,'7',NULL),(19,'8',NULL),(20,'9',NULL),(21,'10',NULL);
+
+/*Table structure for table `sys_user` */
+
+DROP TABLE IF EXISTS `sys_user`;
+
+CREATE TABLE `sys_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(32) NOT NULL,
+  `password` varchar(512) NOT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `enable` tinyint(1) DEFAULT '1',
+  `sys_user` tinyint(1) DEFAULT '0',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `sys_user` */
+
+insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','123','testname',1,0,'2020-12-10 14:51:30');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
