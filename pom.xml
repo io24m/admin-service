@@ -98,19 +98,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.mybatis.generator</groupId>-->
-                <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
-                <!--<version>1.4.0</version>-->
-                <!--<configuration>-->
-                    <!--<jdbcDriver>com.mysql.cj.jdbc.Driver</jdbcDriver>-->
-                    <!--<jdbcURL>jdbc:mysql://localhost/admin_service?serverTimezone=Asia/Shanghai</jdbcURL>-->
-                    <!--<jdbcUserId>root</jdbcUserId>-->
-                    <!--<jdbcPassword>123456</jdbcPassword>-->
-                    <!--<configurationFile>${basedir}/src/main/resources/generatorConfig-dev.xml</configurationFile>-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <!--<configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>-->
                     <!--<includeAllDependencies>true</includeAllDependencies>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
