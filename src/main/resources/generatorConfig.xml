@@ -81,7 +81,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="com._520it.mybatis.domain" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.github.io24m.adminservice" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
                 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
              -->
@@ -101,7 +101,7 @@
                 注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
                     1，属性名相同，类型相同，有相同的getter/setter方法；
              -->
-            <property name="rootClass" value="com._520it.mybatis.domain.BaseDomain"/>
+            <!--<property name="rootClass" value="com._520it.mybatis.domain.BaseDomain"/>-->
 
             <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
             <property name="trimStrings" value="true"/>

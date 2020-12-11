@@ -104,7 +104,7 @@
                 <version>1.4.0</version>
                 <configuration>
                     <!--<configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>-->
-                    <!--<includeAllDependencies>true</includeAllDependencies>-->
+                    <includeAllDependencies>true</includeAllDependencies>
                 </configuration>
             </plugin>
         </plugins>
