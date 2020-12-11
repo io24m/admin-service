@@ -1,6 +1,11 @@
 package com.github.io24m.adminservice.service.sys;
 
+import com.github.io24m.adminservice.domain.SysUser;
+import com.github.io24m.adminservice.mapper.SysUserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author lk1
@@ -9,7 +14,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-    public void getUser() {
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
+    public List<SysUser> getUser() {
+        List<SysUser> sysUsers = sysUserMapper.selectAll();
+        return sysUsers;
     }
 }
