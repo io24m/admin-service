@@ -31,4 +31,9 @@ public class AuthController {
         String token = TokenUtil.getToken(user.getAccount(), user.getPassword());
         return AjaxResponse.result(token);
     }
+
+    @RequestMapping("/data")
+    public AjaxResponse authData() {
+        return AjaxResponse.success();
+    }
 }
