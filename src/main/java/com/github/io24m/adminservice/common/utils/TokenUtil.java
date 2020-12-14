@@ -13,8 +13,9 @@ public final class TokenUtil {
     /**
      * 根据用户生成token
      */
-    public static String getToken(String userId, String password) {
-        String token = JWT.create().withAudience(userId)
+    public static String getToken(String account, String password) {
+        String token = JWT.create()
+                .withAudience(account)
                 .sign(Algorithm.HMAC256(password));
         return token;
     }

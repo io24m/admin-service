@@ -4,8 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
+import com.github.io24m.adminservice.common.utils.AESUtil;
 import com.github.io24m.adminservice.domain.SysUser;
 import com.github.io24m.adminservice.service.sys.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
@@ -15,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 /**
  * @author lk1
@@ -39,10 +40,14 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
 //            SkipToken skipToken = method.getAnnotation(SkipToken.class);
         }
         String token = request.getHeader("Admin-Token");
+        if (StringUtils.isBlank(token)) {
+            response.setStatus(401);
+            return false;
+        }
+        token = AESUtil.Decrypt(token);
         String account;
         try {
-            List<String> audience = JWT.decode(token).getAudience();
-            account = audience.get(0);
+            account = JWT.decode(token).getAudience().get(0);
         } catch (Exception e) {
             response.setStatus(401);
             return false;

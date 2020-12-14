@@ -3,6 +3,7 @@ package com.github.io24m.adminservice.controller.auth;
 import com.github.io24m.adminservice.common.annotation.JsonParam;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
+import com.github.io24m.adminservice.common.utils.AESUtil;
 import com.github.io24m.adminservice.common.utils.MD5Util;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
 import com.github.io24m.adminservice.domain.SysUser;
@@ -28,14 +29,16 @@ public class AuthController {
     @SkipToken
     public AjaxResponse login(@JsonParam String account, @JsonParam String password) {
         if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
-            return AjaxResponse.error("user error");
+            return AjaxResponse.error("用户名或密码错误");
         }
         String md5 = MD5Util.getMD5(password);
         SysUser user = userService.getUser(account, md5);
         if (user == null) {
-            return AjaxResponse.error("user error");
+            return AjaxResponse.error("用户名或密码错误");
         }
         String token = TokenUtil.getToken(user.getAccount(), user.getPassword());
+        token = AESUtil.Encrypt(token);
+        //加密token
         return AjaxResponse.result(token);
     }
 
