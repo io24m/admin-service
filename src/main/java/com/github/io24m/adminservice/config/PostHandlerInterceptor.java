@@ -3,9 +3,9 @@ package com.github.io24m.adminservice.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
-import com.github.io24m.adminservice.common.dto.User;
+import com.github.io24m.adminservice.domain.SysUser;
+import com.github.io24m.adminservice.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * @author lk1
@@ -24,7 +25,7 @@ import java.lang.reflect.Method;
 @Configuration
 public class PostHandlerInterceptor implements HandlerInterceptor {
     @Autowired
-    private ObjectMapper objectMapper;
+    private UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -38,19 +39,15 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
 //            SkipToken skipToken = method.getAnnotation(SkipToken.class);
         }
         String token = request.getHeader("Admin-Token");
+        String account;
         try {
-            String userId = JWT.decode(token).getAudience().get(0);
+            List<String> audience = JWT.decode(token).getAudience();
+            account = audience.get(0);
         } catch (Exception e) {
             response.setStatus(401);
             return false;
         }
-
-        //根据userId查询数据库
-        User user = new User();
-        user.setUserId("0");
-        user.setAccount("0");
-        user.setPassword("1");
-        user.setUserName("test");
+        SysUser user = userService.getUser(account);
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
@@ -60,5 +57,4 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
 }

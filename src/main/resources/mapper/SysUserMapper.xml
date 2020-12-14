@@ -19,6 +19,18 @@
         from sys_user
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByAccountAndPassword" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where account = #{account,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where account = #{account,jdbcType=VARCHAR}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

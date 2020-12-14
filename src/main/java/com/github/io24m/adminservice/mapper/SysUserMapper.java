@@ -1,6 +1,7 @@
 package com.github.io24m.adminservice.mapper;
 
 import com.github.io24m.adminservice.domain.SysUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,6 +13,10 @@ public interface SysUserMapper {
     int insertSelective(SysUser record);
 
     SysUser selectByPrimaryKey(Integer id);
+
+    SysUser selectByAccountAndPassword(@Param("account") String account, @Param("password") String password);
+
+    SysUser selectByAccount(@Param("account") String account);
 
     List<SysUser> selectAll();
 

@@ -2,15 +2,13 @@ package com.github.io24m.adminservice.controller.auth;
 
 import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
-import com.github.io24m.adminservice.common.dto.User;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
+import com.github.io24m.adminservice.domain.SysUser;
+import com.github.io24m.adminservice.service.sys.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author lk1
@@ -20,23 +18,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     @SkipToken
-    public AjaxResponse login(String account, String password, HttpServletRequest request) {
-        User user = new User();
-        user.setUserId("0");
-        user.setAccount("0");
-        user.setPassword("1");
-        user.setUserName("test");
-        String token = TokenUtil.getToken(user);
+    public AjaxResponse login(String account, String password) {
+        SysUser user = userService.getUser(account, password);
+        if (user == null) {
+            return AjaxResponse.error("user error");
+        }
+        String token = TokenUtil.getToken(user.getAccount(), user.getPassword());
         return AjaxResponse.result(token);
-    }
-
-    @PostMapping("/")
-    public AjaxResponse auth(String auth) {
-        List<String> res = new ArrayList<>();
-        res.add(auth);
-        return AjaxResponse.result(res);
     }
 }
