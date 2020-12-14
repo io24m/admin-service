@@ -21,8 +21,17 @@ public class RoleController {
     private RoleService roleService;
 
     @RequestMapping("")
-    public AjaxResponse getRole() {
+    public AjaxResponse get() {
         List<SysRole> role = roleService.getRole();
         return AjaxResponse.result(role);
+    }
+
+    @RequestMapping("/delete")
+    public AjaxResponse delete(Integer id) {
+        if (id == null) {
+            return AjaxResponse.error("");
+        }
+        roleService.deleteRole(id);
+        return AjaxResponse.success();
     }
 }

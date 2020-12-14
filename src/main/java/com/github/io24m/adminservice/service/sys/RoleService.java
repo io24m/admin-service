@@ -20,4 +20,8 @@ public class RoleService {
     public List<SysRole> getRole() {
         return sysRoleMapper.selectAll();
     }
+
+    public void deleteRole(Integer id) {
+        sysRoleMapper.deleteByPrimaryKey(id);
+    }
 }
