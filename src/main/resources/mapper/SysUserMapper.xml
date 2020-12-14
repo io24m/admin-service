@@ -19,7 +19,7 @@
         from sys_user
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <select id="selectAll" resultType="com.github.io24m.adminservice.domain.SysUser">
+    <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_user
