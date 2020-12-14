@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity exceptionHandler(HttpServletRequest request, Exception exception) {
         log.error("错误信息：", exception);
-        AjaxResponse err = AjaxResponse.error("系统错误");
+        AjaxResponse err = AjaxResponse.error("未知错误");
         return new ResponseEntity<>(err, HttpStatus.valueOf(200));
     }
 }
