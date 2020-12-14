@@ -12,7 +12,19 @@ MySQL - 8.0.12 : Database - admin_service
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-USE `admin_service`;
+/*Table structure for table `sys_role` */
+
+DROP TABLE IF EXISTS `sys_role`;
+
+CREATE TABLE `sys_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(128) NOT NULL,
+  `enable` tinyint(1) DEFAULT '1',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `sys_role` */
 
 /*Table structure for table `sys_test` */
 
@@ -42,11 +54,11 @@ CREATE TABLE `sys_user` (
   `sys_user` tinyint(1) DEFAULT '0',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','123','testname',1,0,'2020-12-10 14:51:30');
+insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','123','testname',1,0,'2020-12-10 14:51:30'),(2,'test1','12345','testname1',0,1,'2020-12-11 14:17:44');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
