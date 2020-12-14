@@ -1,6 +1,6 @@
 package com.github.io24m.adminservice.controller.auth;
 
-import com.github.io24m.adminservice.common.annotation.JsonParam;
+import com.github.io24m.adminservice.common.annotation.JsonProperty;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.utils.AESUtil;
@@ -27,7 +27,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @SkipToken
-    public AjaxResponse login(@JsonParam String account, @JsonParam String password) {
+    public AjaxResponse login(@JsonProperty String account, @JsonProperty String password) {
         if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
             return AjaxResponse.error("用户名或密码错误");
         }

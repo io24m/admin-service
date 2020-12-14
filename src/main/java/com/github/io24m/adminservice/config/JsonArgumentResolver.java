@@ -1,7 +1,7 @@
 package com.github.io24m.adminservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.io24m.adminservice.common.annotation.JsonParam;
+import com.github.io24m.adminservice.common.annotation.JsonProperty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -29,7 +29,7 @@ public class JsonArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.hasParameterAnnotation(JsonParam.class);
+        return methodParameter.hasParameterAnnotation(JsonProperty.class);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class JsonArgumentResolver implements HandlerMethodArgumentResolver {
             request.setAttribute("jsonParamObject", jsonParamObject);
         }
         String paramName = methodParameter.getParameterName();
-        JsonParam methodAnnotation = methodParameter.getParameterAnnotation(JsonParam.class);
+        JsonProperty methodAnnotation = methodParameter.getParameterAnnotation(JsonProperty.class);
         if (methodAnnotation != null && !StringUtils.isBlank(methodAnnotation.value())) {
             paramName = methodAnnotation.value();
         }
