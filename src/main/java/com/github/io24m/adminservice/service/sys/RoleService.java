@@ -1,0 +1,23 @@
+package com.github.io24m.adminservice.service.sys;
+
+import com.github.io24m.adminservice.domain.SysRole;
+import com.github.io24m.adminservice.mapper.SysRoleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author lk1
+ * @description
+ * @create 2020-12-14 10:26
+ */
+@Service
+public class RoleService {
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+
+    public List<SysRole> getRole() {
+        return sysRoleMapper.selectAll();
+    }
+}
