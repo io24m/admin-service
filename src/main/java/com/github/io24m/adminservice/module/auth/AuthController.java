@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  * @create 2020-11-24 16:12
  */
-@Api(description = "用户管理")
+@Api(description = "权限管理")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
