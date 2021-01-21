@@ -35,6 +35,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
         InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
         post.addPathPatterns("/**");
+        post.excludePathPatterns("/doc.html");
         post.excludePathPatterns("/swagger-ui.html");
         post.excludePathPatterns("/v2/**");
         post.excludePathPatterns("/swagger-resources/**");
@@ -57,6 +58,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/static/");
         // 解决swagger无法访问
         registry.addResourceHandler("/swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/doc.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
         // 解决swagger的js文件无法访问
         registry.addResourceHandler("/webjars/**")

@@ -17,6 +17,7 @@ public class HomeController {
     @SkipToken
     @GetMapping("")
     public AjaxResponse index() {
-        return AjaxResponse.success();
+        String res="文档地址[/doc.html|/swagger-ui.html]";
+        return AjaxResponse.result(res);
     }
 }
