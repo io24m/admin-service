@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  * @create 2020-11-24 16:12
  */
-@Api("权限管理")
+@Api(description = "用户管理")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -45,6 +45,7 @@ public class AuthController {
         return AjaxResponse.result(token);
     }
 
+    @ApiOperation("权限数据")
     @PostMapping("/data")
     public AjaxResponse authData() {
         return AjaxResponse.success();
