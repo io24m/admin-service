@@ -1,7 +1,5 @@
-package com.github.io24m.adminservice.service.sys;
+package com.github.io24m.adminservice.module.sys.user;
 
-import com.github.io24m.adminservice.domain.SysUser;
-import com.github.io24m.adminservice.mapper.SysUserMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

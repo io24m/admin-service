@@ -1,4 +1,4 @@
-package com.github.io24m.adminservice.controller.auth;
+package com.github.io24m.adminservice.module.auth;
 
 import com.github.io24m.adminservice.common.annotation.JsonProperty;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
@@ -6,8 +6,8 @@ import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.utils.AESUtil;
 import com.github.io24m.adminservice.common.utils.MD5Util;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
-import com.github.io24m.adminservice.domain.SysUser;
-import com.github.io24m.adminservice.service.sys.UserService;
+import com.github.io24m.adminservice.module.sys.user.SysUser;
+import com.github.io24m.adminservice.module.sys.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

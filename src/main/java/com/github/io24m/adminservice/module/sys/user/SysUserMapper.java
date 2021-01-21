@@ -1,6 +1,5 @@
-package com.github.io24m.adminservice.mapper;
+package com.github.io24m.adminservice.module.sys.user;
 
-import com.github.io24m.adminservice.domain.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

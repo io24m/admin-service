@@ -1,26 +1,20 @@
-package com.github.io24m.adminservice.domain;
+package com.github.io24m.adminservice.module.sys.role;
 
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * lk1
+ * sys_role
  * @author 
  */
 @Data
-public class SysUser implements Serializable {
+public class SysRole implements Serializable {
     private Integer id;
 
-    private String account;
-
-    private String password;
-
-    private String name;
+    private String roleName;
 
     private Boolean enable;
-
-    private Boolean sysUser;
 
     private Date createTime;
 

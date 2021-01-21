@@ -1,7 +1,7 @@
-package com.github.io24m.adminservice.controller.sys;
+package com.github.io24m.adminservice.module.sys.user;
 
+import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
-import com.github.io24m.adminservice.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("")
+    @SkipToken
     public AjaxResponse getUser() {
         return AjaxResponse.result(userService.getUser());
     }

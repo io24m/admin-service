@@ -1,7 +1,5 @@
-package com.github.io24m.adminservice.service.sys;
+package com.github.io24m.adminservice.module.sys.role;
 
-import com.github.io24m.adminservice.domain.SysRole;
-import com.github.io24m.adminservice.mapper.SysRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,6 @@
-package com.github.io24m.adminservice.controller.sys;
+package com.github.io24m.adminservice.module.sys.role;
 
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
-import com.github.io24m.adminservice.domain.SysRole;
-import com.github.io24m.adminservice.service.sys.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
