@@ -3,6 +3,7 @@ package com.github.io24m.adminservice.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.github.io24m.adminservice.common.Constants;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.utils.AESUtil;
 import com.github.io24m.adminservice.module.sys.user.SysUser;
@@ -39,7 +40,7 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
             return true;
 //            SkipToken skipToken = method.getAnnotation(SkipToken.class);
         }
-        String token = request.getHeader("Admin-Token");
+        String token = request.getHeader(Constants.TOKEN_HEADER);
         if (StringUtils.isBlank(token)) {
             response.setStatus(401);
             return false;
