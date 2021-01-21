@@ -46,6 +46,10 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
             return false;
         }
         token = AESUtil.Decrypt(token);
+        if (StringUtils.isBlank(token)) {
+            response.setStatus(401);
+            return false;
+        }
         String account;
         try {
             account = JWT.decode(token).getAudience().get(0);
@@ -54,6 +58,10 @@ public class PostHandlerInterceptor implements HandlerInterceptor {
             return false;
         }
         SysUser user = userService.getUser(account);
+        if (user == null) {
+            response.setStatus(401);
+            return false;
+        }
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
