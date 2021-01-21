@@ -5,10 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
         InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
         post.addPathPatterns("/**");
+        post.excludePathPatterns("/swagger-ui.html");
+        post.excludePathPatterns("/v2/**");
+        post.excludePathPatterns("/swagger-resources/**");
     }
 
     @Bean
@@ -49,5 +49,17 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         super.addArgumentResolvers(argumentResolvers);
         argumentResolvers.add(jsonArgumentResolver());
+    }
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 解决静态资源无法访问
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/");
+        // 解决swagger无法访问
+        registry.addResourceHandler("/swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        // 解决swagger的js文件无法访问
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }

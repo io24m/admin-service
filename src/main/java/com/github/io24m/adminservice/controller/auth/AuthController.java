@@ -42,7 +42,7 @@ public class AuthController {
         return AjaxResponse.result(token);
     }
 
-    @RequestMapping("/data")
+    @PostMapping("/data")
     public AjaxResponse authData() {
         return AjaxResponse.success();
     }
