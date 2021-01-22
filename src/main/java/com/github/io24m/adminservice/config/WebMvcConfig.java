@@ -35,9 +35,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
         InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
         post.addPathPatterns("/**");
-        post.excludePathPatterns("/doc.html");
-        post.excludePathPatterns("/swagger-ui.html");
-        post.excludePathPatterns("/v2/**");
+        post.excludePathPatterns("/v2/api-docs");
         post.excludePathPatterns("/swagger-resources/**");
     }
 
