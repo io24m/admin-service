@@ -1,4 +1,6 @@
-package com.github.io24m.adminservice.module.validate.config;
+package com.github.io24m.adminservice.module.validate;
+
+import com.github.io24m.adminservice.module.validate.config.ValidateConfig;
 
 import java.util.List;
 

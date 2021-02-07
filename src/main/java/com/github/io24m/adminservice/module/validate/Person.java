@@ -1,5 +1,6 @@
 package com.github.io24m.adminservice.module.validate;
 
+import com.github.io24m.validate4java.validator.dict.Dict;
 import com.github.io24m.validate4java.validator.empty.Empty;
 import lombok.Data;
 
@@ -11,8 +12,10 @@ import lombok.Data;
 @Data
 public class Person {
     @Empty(configKey = "name", errorMessage = "姓名不能为空")
+    @Dict(configKey = "name", dictKey = "name")
     private String name;
 
     @Empty(configKey = "age", errorMessage = "年龄不能为空")
+    @Dict(configKey = "name", dictKey = "age")
     private String age;
 }

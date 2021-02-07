@@ -1,5 +1,6 @@
 package com.github.io24m.adminservice.module.validate.config;
 
+import com.github.io24m.adminservice.module.validate.ValidateConfigMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

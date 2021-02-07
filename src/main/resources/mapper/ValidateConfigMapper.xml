@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.io24m.adminservice.module.validate.config.ValidateConfigMapper">
+<mapper namespace="com.github.io24m.adminservice.module.validate.ValidateConfigMapper">
   <resultMap id="BaseResultMap" type="com.github.io24m.adminservice.module.validate.config.ValidateConfig">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
