@@ -89,6 +89,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.io24m</groupId>
+            <artifactId>validate4java</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
