@@ -58,7 +58,26 @@ CREATE TABLE `sys_user` (
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','123','testname',1,0,'2020-12-10 14:51:30'),(2,'test1','12345','testname1',0,1,'2020-12-11 14:17:44');
+insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','5f329d3ac22671f7b214c461e58c27f3','testname',1,0,'2020-12-10 14:51:30'),(2,'test1','12345','testname1',0,1,'2020-12-11 14:17:44');
+
+/*Table structure for table `validate_config` */
+
+DROP TABLE IF EXISTS `validate_config`;
+
+CREATE TABLE `validate_config` (
+  `class_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `key` varchar(128) DEFAULT NULL,
+  `validate_type` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `check` tinyint(1) DEFAULT '1',
+  `pass` tinyint(1) DEFAULT '0',
+  `error_message` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `validate_config` */
+
+insert  into `validate_config`(`class_name`,`key`,`validate_type`,`check`,`pass`,`error_message`,`id`) values ('person','name','empty',1,1,'姓名不能为空1',1),('person','name','dict',1,0,'姓名不在字典中1',2),('person','age','empty',1,0,'年龄不能为空1',3),('person','age','dict',1,0,'年龄不在字典中1',4);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
