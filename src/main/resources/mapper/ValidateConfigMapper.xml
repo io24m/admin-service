@@ -8,10 +8,10 @@
     <result column="validate_type" jdbcType="VARCHAR" property="validateType" />
     <result column="check" jdbcType="BOOLEAN" property="check" />
     <result column="pass" jdbcType="BOOLEAN" property="pass" />
-    <result column="errormessage" jdbcType="VARCHAR" property="errormessage" />
+    <result column="error_message" jdbcType="VARCHAR" property="errorMessage" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, class_name, `key`, validate_type, `check`, pass, errormessage
+    id, class_name, `key`, validate_type, `check`, pass, error_message
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,17 +24,16 @@
     <include refid="Base_Column_List" />
     from validate_config
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from validate_config
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.module.validate.config.ValidateConfig" useGeneratedKeys="true">
     insert into validate_config (class_name, `key`, validate_type, 
-      `check`, pass, errormessage
+      `check`, pass, error_message
       )
     values (#{className,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{validateType,jdbcType=VARCHAR}, 
-      #{check,jdbcType=BOOLEAN}, #{pass,jdbcType=BOOLEAN}, #{errormessage,jdbcType=VARCHAR}
+      #{check,jdbcType=BOOLEAN}, #{pass,jdbcType=BOOLEAN}, #{errorMessage,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.module.validate.config.ValidateConfig" useGeneratedKeys="true">
@@ -55,8 +54,8 @@
       <if test="pass != null">
         pass,
       </if>
-      <if test="errormessage != null">
-        errormessage,
+      <if test="errorMessage != null">
+        error_message,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -75,8 +74,8 @@
       <if test="pass != null">
         #{pass,jdbcType=BOOLEAN},
       </if>
-      <if test="errormessage != null">
-        #{errormessage,jdbcType=VARCHAR},
+      <if test="errorMessage != null">
+        #{errorMessage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -98,8 +97,8 @@
       <if test="pass != null">
         pass = #{pass,jdbcType=BOOLEAN},
       </if>
-      <if test="errormessage != null">
-        errormessage = #{errormessage,jdbcType=VARCHAR},
+      <if test="errorMessage != null">
+        error_message = #{errorMessage,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -111,7 +110,7 @@
       validate_type = #{validateType,jdbcType=VARCHAR},
       `check` = #{check,jdbcType=BOOLEAN},
       pass = #{pass,jdbcType=BOOLEAN},
-      errormessage = #{errormessage,jdbcType=VARCHAR}
+      error_message = #{errorMessage,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

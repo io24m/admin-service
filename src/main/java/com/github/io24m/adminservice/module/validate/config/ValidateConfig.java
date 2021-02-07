@@ -21,7 +21,7 @@ public class ValidateConfig implements Serializable {
 
     private Boolean pass;
 
-    private String errormessage;
+    private String errorMessage;
 
     private static final long serialVersionUID = 1L;
 }
