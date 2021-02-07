@@ -4,7 +4,6 @@ import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.module.validate.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,7 @@ public class ValidateDataController {
     private ValidateDataServiceImpl validateDataService;
 
     @PostMapping("")
-    public AjaxResponse validate(@RequestBody Person person) {
+    public AjaxResponse validate(Person person) {
         Message message = validateDataService.validate(person);
         return AjaxResponse.result(message);
     }

@@ -12,8 +12,7 @@ import com.github.io24m.validate4java.validator.empty.EmptyConfigValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,13 +30,24 @@ public class ValidateDataServiceImpl {
         PersonConfig config = getConfig();
         Validate validate = new Validate();
         validate.config(new EmptyConfigValidator(config.getEmptyConfigMap()));
-        validate.config(new DictConfigValidator(null, config.getDictConfigMap()));
+        validate.config(new DictConfigValidator(getDictMap(), config.getDictConfigMap()));
         ValidateResult handle = validate.handle(person);
         Message message = new Message();
         message.setErrorMessage(handle.getErrorMessage());
         message.setMessage(handle.getMessage());
         message.setSuccess(handle.success());
         return message;
+    }
+
+    private Map<String, Set<String>> getDictMap() {
+        Map<String, Set<String>> res = new HashMap<>();
+        Set<String> s = new HashSet<>();
+        s.add("1");
+        s.add("2");
+        s.add("3");
+        res.put("name", s);
+        res.put("age", s);
+        return res;
     }
 
     private PersonConfig getConfig() {
