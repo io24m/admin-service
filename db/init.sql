@@ -60,24 +60,40 @@ CREATE TABLE `sys_user` (
 
 insert  into `sys_user`(`id`,`account`,`password`,`name`,`enable`,`sys_user`,`create_time`) values (1,'test','5f329d3ac22671f7b214c461e58c27f3','testname',1,0,'2020-12-10 14:51:30'),(2,'test1','12345','testname1',0,1,'2020-12-11 14:17:44');
 
-/*Table structure for table `validate_config` */
+/*Table structure for table `validate_class` */
 
-DROP TABLE IF EXISTS `validate_config`;
+DROP TABLE IF EXISTS `validate_class`;
 
-CREATE TABLE `validate_config` (
-  `class_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `key` varchar(128) DEFAULT NULL,
-  `validate_type` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+CREATE TABLE `validate_class` (
+  `class_type` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `class_name` varchar(128) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `remark` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`class_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `validate_class` */
+
+insert  into `validate_class`(`class_type`,`class_name`,`status`,`remark`) values ('com.github.io24m.adminservice.module.validate.Person','个人信息',1,NULL),('com.github.io24m.adminservice.module.validate.Person1','个人信息1',1,NULL);
+
+/*Table structure for table `validate_file_config` */
+
+DROP TABLE IF EXISTS `validate_file_config`;
+
+CREATE TABLE `validate_file_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class_type` varchar(512) DEFAULT NULL,
+  `file_key` varchar(128) DEFAULT NULL,
+  `validate_type` varchar(128) DEFAULT NULL,
   `check` tinyint(1) DEFAULT '1',
   `pass` tinyint(1) DEFAULT '0',
-  `error_message` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `error_message` varchar(2014) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*Data for the table `validate_config` */
+/*Data for the table `validate_file_config` */
 
-insert  into `validate_config`(`class_name`,`key`,`validate_type`,`check`,`pass`,`error_message`,`id`) values ('person','name','empty',1,1,'姓名不能为空1',1),('person','name','dict',1,0,'姓名不在字典中1',2),('person','age','empty',1,0,'年龄不能为空1',3),('person','age','dict',1,0,'年龄不在字典中1',4);
+insert  into `validate_file_config`(`id`,`class_type`,`file_key`,`validate_type`,`check`,`pass`,`error_message`) values (1,'com.github.io24m.adminservice.module.validate.Person','name','empty',0,0,'error:name empty'),(2,'com.github.io24m.adminservice.module.validate.Person','age','empty',1,1,'error:age empty'),(3,'com.github.io24m.adminservice.module.validate.Person1','name','dict',1,0,'error:name dict');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
