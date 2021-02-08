@@ -23,8 +23,8 @@ public class ValidateConfigController {
     }
 
     @PostMapping("getFileConfig")
-    public AjaxResponse getFileConfig() {
-        return AjaxResponse.result(validateConfigService.getFileConfig());
+    public AjaxResponse getFileConfig(String classType) {
+        return AjaxResponse.result(validateConfigService.getFileConfig(classType));
     }
 
     @PostMapping("/update")

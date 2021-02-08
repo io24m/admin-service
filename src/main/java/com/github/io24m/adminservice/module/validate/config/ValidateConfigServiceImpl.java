@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author lk1
@@ -28,7 +29,10 @@ public class ValidateConfigServiceImpl {
         return validateClassMapper.selectAll();
     }
 
-    public List<ValidateFileConfig> getFileConfig() {
-        return validateFileConfigMapper.selectAll();
+    public List<ValidateFileConfig> getFileConfig(String classType) {
+        List<ValidateFileConfig> validateFileConfigs = validateFileConfigMapper.selectAll();
+        List<ValidateFileConfig> res = validateFileConfigs.stream()
+                .filter(x -> x.getClassType().equals(classType)).collect(Collectors.toList());
+        return res;
     }
 }
