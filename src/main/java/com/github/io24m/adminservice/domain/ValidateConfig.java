@@ -1,4 +1,4 @@
-package com.github.io24m.adminservice.module.validate.config;
+package com.github.io24m.adminservice.domain;
 
 import java.io.Serializable;
 import lombok.Data;

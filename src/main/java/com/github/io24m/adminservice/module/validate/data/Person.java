@@ -1,4 +1,4 @@
-package com.github.io24m.adminservice.module.validate;
+package com.github.io24m.adminservice.module.validate.data;
 
 import com.github.io24m.validate4java.validator.dict.Dict;
 import com.github.io24m.validate4java.validator.empty.Empty;

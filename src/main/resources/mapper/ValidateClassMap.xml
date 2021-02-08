@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.io24m.adminservice.mapper.ValidateClassMap">
+  <resultMap id="BaseResultMap" type="com.github.io24m.adminservice.domain.ValidateClass">
+    <id column="class_type" jdbcType="VARCHAR" property="classType" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    class_type, class_name, `status`, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from validate_class
+    where class_type = #{classType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from validate_class
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from validate_class
+    where class_type = #{classType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="class_type" keyProperty="classType" parameterType="com.github.io24m.adminservice.domain.ValidateClass" useGeneratedKeys="true">
+    insert into validate_class (class_name, `status`, remark
+      )
+    values (#{className,jdbcType=VARCHAR}, #{status,jdbcType=BOOLEAN}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="class_type" keyProperty="classType" parameterType="com.github.io24m.adminservice.domain.ValidateClass" useGeneratedKeys="true">
+    insert into validate_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.io24m.adminservice.domain.ValidateClass">
+    update validate_class
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where class_type = #{classType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.io24m.adminservice.domain.ValidateClass">
+    update validate_class
+    set class_name = #{className,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=BOOLEAN},
+      remark = #{remark,jdbcType=VARCHAR}
+    where class_type = #{classType,jdbcType=VARCHAR}
+  </update>
+</mapper>

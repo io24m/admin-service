@@ -5,7 +5,7 @@ import com.github.io24m.adminservice.common.dto.AjaxResponse;
 import com.github.io24m.adminservice.common.utils.AESUtil;
 import com.github.io24m.adminservice.common.utils.MD5Util;
 import com.github.io24m.adminservice.common.utils.TokenUtil;
-import com.github.io24m.adminservice.module.sys.user.SysUser;
+import com.github.io24m.adminservice.domain.SysUser;
 import com.github.io24m.adminservice.module.sys.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

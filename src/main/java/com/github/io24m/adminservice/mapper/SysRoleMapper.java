@@ -1,4 +1,6 @@
-package com.github.io24m.adminservice.module.sys.role;
+package com.github.io24m.adminservice.mapper;
+
+import com.github.io24m.adminservice.domain.SysRole;
 
 import java.util.List;
 

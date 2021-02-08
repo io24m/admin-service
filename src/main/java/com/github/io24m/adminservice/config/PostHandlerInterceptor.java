@@ -6,7 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.github.io24m.adminservice.common.Constants;
 import com.github.io24m.adminservice.common.annotation.SkipToken;
 import com.github.io24m.adminservice.common.utils.AESUtil;
-import com.github.io24m.adminservice.module.sys.user.SysUser;
+import com.github.io24m.adminservice.domain.SysUser;
 import com.github.io24m.adminservice.module.sys.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

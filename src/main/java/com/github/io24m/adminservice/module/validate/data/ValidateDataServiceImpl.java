@@ -1,8 +1,7 @@
 package com.github.io24m.adminservice.module.validate.data;
 
-import com.github.io24m.adminservice.module.validate.Person;
-import com.github.io24m.adminservice.module.validate.ValidateConfigMapper;
-import com.github.io24m.adminservice.module.validate.config.ValidateConfig;
+import com.github.io24m.adminservice.mapper.ValidateConfigMapper;
+import com.github.io24m.adminservice.domain.ValidateConfig;
 import com.github.io24m.validate4java.Validate;
 import com.github.io24m.validate4java.ValidateResult;
 import com.github.io24m.validate4java.validator.dict.DictConfig;

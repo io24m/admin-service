@@ -1,6 +1,6 @@
-package com.github.io24m.adminservice.module.validate;
+package com.github.io24m.adminservice.mapper;
 
-import com.github.io24m.adminservice.module.validate.config.ValidateConfig;
+import com.github.io24m.adminservice.domain.ValidateConfig;
 
 import java.util.List;
 

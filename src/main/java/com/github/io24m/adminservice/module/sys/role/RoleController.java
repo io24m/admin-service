@@ -1,6 +1,7 @@
 package com.github.io24m.adminservice.module.sys.role;
 
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
+import com.github.io24m.adminservice.domain.SysRole;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

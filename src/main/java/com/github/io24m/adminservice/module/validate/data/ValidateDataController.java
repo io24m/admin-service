@@ -1,7 +1,6 @@
 package com.github.io24m.adminservice.module.validate.data;
 
 import com.github.io24m.adminservice.common.dto.AjaxResponse;
-import com.github.io24m.adminservice.module.validate.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
