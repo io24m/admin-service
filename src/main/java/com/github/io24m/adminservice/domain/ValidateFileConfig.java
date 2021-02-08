@@ -4,16 +4,16 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * validate_config
+ * validate_file_config
  * @author 
  */
 @Data
-public class ValidateConfig implements Serializable {
+public class ValidateFileConfig implements Serializable {
     private Integer id;
 
-    private String className;
+    private String classType;
 
-    private String key;
+    private String fileKey;
 
     private String validateType;
 

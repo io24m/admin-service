@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.io24m.adminservice.mapper.ValidateConfigMapper">
-  <resultMap id="BaseResultMap" type="com.github.io24m.adminservice.domain.ValidateConfig">
+<mapper namespace="com.github.io24m.adminservice.mapper.ValidateFileConfigMapper">
+  <resultMap id="BaseResultMap" type="com.github.io24m.adminservice.domain.ValidateFileConfig">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="class_name" jdbcType="VARCHAR" property="className" />
-    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="class_type" jdbcType="VARCHAR" property="classType" />
+    <result column="file_key" jdbcType="VARCHAR" property="fileKey" />
     <result column="validate_type" jdbcType="VARCHAR" property="validateType" />
     <result column="check" jdbcType="BOOLEAN" property="check" />
     <result column="pass" jdbcType="BOOLEAN" property="pass" />
     <result column="error_message" jdbcType="VARCHAR" property="errorMessage" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, class_name, `key`, validate_type, `check`, pass, error_message
+    id, class_type, file_key, validate_type, `check`, pass, error_message
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from validate_config
+    from validate_file_config
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from validate_config
+    from validate_file_config
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from validate_config
+    delete from validate_file_config
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.domain.ValidateConfig" useGeneratedKeys="true">
-    insert into validate_config (class_name, `key`, validate_type, 
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.domain.ValidateFileConfig" useGeneratedKeys="true">
+    insert into validate_file_config (class_type, file_key, validate_type, 
       `check`, pass, error_message
       )
-    values (#{className,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{validateType,jdbcType=VARCHAR}, 
+    values (#{classType,jdbcType=VARCHAR}, #{fileKey,jdbcType=VARCHAR}, #{validateType,jdbcType=VARCHAR}, 
       #{check,jdbcType=BOOLEAN}, #{pass,jdbcType=BOOLEAN}, #{errorMessage,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.domain.ValidateConfig" useGeneratedKeys="true">
-    insert into validate_config
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.github.io24m.adminservice.domain.ValidateFileConfig" useGeneratedKeys="true">
+    insert into validate_file_config
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="className != null">
-        class_name,
+      <if test="classType != null">
+        class_type,
       </if>
-      <if test="key != null">
-        `key`,
+      <if test="fileKey != null">
+        file_key,
       </if>
       <if test="validateType != null">
         validate_type,
@@ -59,11 +59,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="className != null">
-        #{className,jdbcType=VARCHAR},
+      <if test="classType != null">
+        #{classType,jdbcType=VARCHAR},
       </if>
-      <if test="key != null">
-        #{key,jdbcType=VARCHAR},
+      <if test="fileKey != null">
+        #{fileKey,jdbcType=VARCHAR},
       </if>
       <if test="validateType != null">
         #{validateType,jdbcType=VARCHAR},
@@ -79,14 +79,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.github.io24m.adminservice.domain.ValidateConfig">
-    update validate_config
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.io24m.adminservice.domain.ValidateFileConfig">
+    update validate_file_config
     <set>
-      <if test="className != null">
-        class_name = #{className,jdbcType=VARCHAR},
+      <if test="classType != null">
+        class_type = #{classType,jdbcType=VARCHAR},
       </if>
-      <if test="key != null">
-        `key` = #{key,jdbcType=VARCHAR},
+      <if test="fileKey != null">
+        file_key = #{fileKey,jdbcType=VARCHAR},
       </if>
       <if test="validateType != null">
         validate_type = #{validateType,jdbcType=VARCHAR},
@@ -103,10 +103,10 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.github.io24m.adminservice.domain.ValidateConfig">
-    update validate_config
-    set class_name = #{className,jdbcType=VARCHAR},
-      `key` = #{key,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.github.io24m.adminservice.domain.ValidateFileConfig">
+    update validate_file_config
+    set class_type = #{classType,jdbcType=VARCHAR},
+      file_key = #{fileKey,jdbcType=VARCHAR},
       validate_type = #{validateType,jdbcType=VARCHAR},
       `check` = #{check,jdbcType=BOOLEAN},
       pass = #{pass,jdbcType=BOOLEAN},

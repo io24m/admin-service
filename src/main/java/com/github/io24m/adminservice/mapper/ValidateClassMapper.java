@@ -4,7 +4,7 @@ import com.github.io24m.adminservice.domain.ValidateClass;
 
 import java.util.List;
 
-public interface ValidateClassMap {
+public interface ValidateClassMapper {
     int deleteByPrimaryKey(String classType);
 
     int insert(ValidateClass record);

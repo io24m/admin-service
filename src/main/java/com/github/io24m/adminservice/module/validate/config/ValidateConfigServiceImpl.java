@@ -1,13 +1,13 @@
 package com.github.io24m.adminservice.module.validate.config;
 
-import com.github.io24m.adminservice.domain.ValidateConfig;
-import com.github.io24m.adminservice.mapper.ValidateConfigMapper;
+import com.github.io24m.adminservice.domain.ValidateClass;
+import com.github.io24m.adminservice.domain.ValidateFileConfig;
+import com.github.io24m.adminservice.mapper.ValidateClassMapper;
+import com.github.io24m.adminservice.mapper.ValidateFileConfigMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author lk1
@@ -18,16 +18,17 @@ import java.util.stream.Collectors;
 public class ValidateConfigServiceImpl {
 
     @Autowired
-    private ValidateConfigMapper validateConfigMapper;
+    private ValidateClassMapper validateClassMapper;
 
-    public Object getConfig() {
-        List<ValidateConfig> validateConfigs = validateConfigMapper.selectAll();
-        Map<String, Map<String, List<ValidateConfig>>> collect = validateConfigs.stream()
-                .collect(Collectors
-                        .groupingBy(ValidateConfig::getClassName,
-                                Collectors.groupingBy(ValidateConfig::getKey, Collectors.toList())));
+    @Autowired
+    private ValidateFileConfigMapper validateFileConfigMapper;
 
 
-        return collect;
+    public List<ValidateClass> getClassConfig() {
+        return validateClassMapper.selectAll();
+    }
+
+    public List<ValidateFileConfig> getFileConfig() {
+        return validateFileConfigMapper.selectAll();
     }
 }

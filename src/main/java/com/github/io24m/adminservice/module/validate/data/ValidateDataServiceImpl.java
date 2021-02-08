@@ -1,7 +1,9 @@
 package com.github.io24m.adminservice.module.validate.data;
 
-import com.github.io24m.adminservice.mapper.ValidateConfigMapper;
-import com.github.io24m.adminservice.domain.ValidateConfig;
+import com.github.io24m.adminservice.domain.ValidateClass;
+import com.github.io24m.adminservice.domain.ValidateFileConfig;
+import com.github.io24m.adminservice.mapper.ValidateClassMapper;
+import com.github.io24m.adminservice.mapper.ValidateFileConfigMapper;
 import com.github.io24m.validate4java.Validate;
 import com.github.io24m.validate4java.ValidateResult;
 import com.github.io24m.validate4java.validator.dict.DictConfig;
@@ -21,9 +23,11 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ValidateDataServiceImpl {
+    @Autowired
+    private ValidateClassMapper validateClassMapper;
 
     @Autowired
-    private ValidateConfigMapper validateConfigMapper;
+    private ValidateFileConfigMapper validateFileConfigMapper;
 
     public Message validate(Person person) {
         PersonConfig config = getConfig();
@@ -51,10 +55,20 @@ public class ValidateDataServiceImpl {
 
     private PersonConfig getConfig() {
         PersonConfig config = new PersonConfig();
-        List<ValidateConfig> validateConfigs = validateConfigMapper.selectAll();
-        Map<String, EmptyConfig> empty = validateConfigs.stream()
+
+        List<ValidateClass> classConfig = getClassConfig();
+        Set<String> classConfigSet = classConfig.stream()
+                .map(ValidateClass::getClassType)
+                .collect(Collectors.toSet());
+
+        List<ValidateFileConfig> fileConfig = getFileConfig();
+        fileConfig = fileConfig.stream()
+                .filter(x -> classConfigSet.contains(x.getClassType()))
+                .collect(Collectors.toList());
+
+        Map<String, EmptyConfig> empty = fileConfig.stream()
                 .filter(x -> x.getValidateType().equals("empty"))
-                .collect(Collectors.toMap(ValidateConfig::getKey, v -> {
+                .collect(Collectors.toMap(ValidateFileConfig::getFileKey, v -> {
                     EmptyConfig emptyConfig = new EmptyConfig();
                     emptyConfig.setCheck(v.getCheck());
                     emptyConfig.setPass(v.getPass());
@@ -62,9 +76,11 @@ public class ValidateDataServiceImpl {
                     return emptyConfig;
                 }));
         config.setEmptyConfigMap(empty);
-        Map<String, DictConfig> dict = validateConfigs.stream()
+
+
+        Map<String, DictConfig> dict = fileConfig.stream()
                 .filter(x -> x.getValidateType().equals("dict"))
-                .collect(Collectors.toMap(ValidateConfig::getKey, v -> {
+                .collect(Collectors.toMap(ValidateFileConfig::getFileKey, v -> {
                     DictConfig dictConfig = new DictConfig();
                     dictConfig.setCheck(v.getCheck());
                     dictConfig.setPass(v.getPass());
@@ -72,7 +88,16 @@ public class ValidateDataServiceImpl {
                     return dictConfig;
                 }));
         config.setDictConfigMap(dict);
+
+
         return config;
     }
 
+    private List<ValidateClass> getClassConfig() {
+        return validateClassMapper.selectAll();
+    }
+
+    private List<ValidateFileConfig> getFileConfig() {
+        return validateFileConfigMapper.selectAll();
+    }
 }
