@@ -11,16 +11,16 @@ import lombok.Data;
  */
 @Data
 public class Person {
-    @Empty(configKey = "name", errorMessage = "姓名不能为空")
-    @Dict(configKey = "name", dictKey = "name", errorMessage = "name dict error")
+    @Empty(errorMessage = "姓名不能为空")
+    @Dict(dictKey = "name", errorMessage = "name dict error")
     private String name;
 
-    @Empty(configKey = "age", errorMessage = "年龄不能为空")
-    @Dict(configKey = "age", dictKey = "age", errorMessage = "age dict error")
+    @Empty(errorMessage = "年龄不能为空")
+    @Dict(dictKey = "age", errorMessage = "age dict error")
     private String age;
 
-    @Empty(configKey = "birthday", errorMessage = "birthday不能为空")
-    @Dict(configKey = "birthday", dictKey = "birthday", errorMessage = "birthday dict error")
+    @Empty(errorMessage = "birthday不能为空")
+    @Dict(dictKey = "birthday", errorMessage = "birthday dict error")
     private String birthday;
 
 }
