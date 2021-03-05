@@ -88,11 +88,11 @@
             <version>2.0.8</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.io24m</groupId>
-            <artifactId>validate4java</artifactId>
-            <version>0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.github.io24m</groupId>-->
+            <!--<artifactId>validate4java</artifactId>-->
+            <!--<version>0.1</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
