@@ -43,12 +43,12 @@ mybatis:
 security:
   oauth2:
     client:
-      client-id: dipauditWeb
-      client-secret: A8034E23539C4F17A2353BE2E8FD87E7
+      client-id: test-client-id
+      client-secret: test-client-secret
       access-token-uri: http://localhost:9001/oauth/token
       user-authorization-uri: http://localhost:9001/oauth/authorize
     resource:
-      user-info-uri: http://localhost:9001/user/me
+      user-info-uri: http://localhost:9001/user
 #    resource:
 #      service-id: admin-service
 #      user-info-uri: http://localhost:9001/user
