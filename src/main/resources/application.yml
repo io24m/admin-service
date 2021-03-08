@@ -1,6 +1,6 @@
 server:
-#  servlet:
-#    context-path: /api/
+  #  servlet:
+  #    context-path: /api/
   port: 8091
   servlet:
     session:
@@ -49,6 +49,7 @@ security:
       user-authorization-uri: http://localhost:9001/oauth/authorize
     resource:
       user-info-uri: http://localhost:9001/user
+#      service-id: admin-service
 #    resource:
 #      service-id: admin-service
 #      user-info-uri: http://localhost:9001/user
