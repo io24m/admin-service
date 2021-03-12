@@ -33,10 +33,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
-//        InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
-//        post.addPathPatterns("/**");
-//        post.excludePathPatterns("/v2/api-docs");
-//        post.excludePathPatterns("/swagger-resources/**");
+        InterceptorRegistration post = registry.addInterceptor(postHandlerInterceptor);
+        post.addPathPatterns("/**");
+        post.excludePathPatterns("/v2/api-docs");
+        post.excludePathPatterns("/swagger-resources/**");
     }
 
     @Bean
